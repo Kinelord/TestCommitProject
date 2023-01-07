@@ -14,7 +14,7 @@ HELP.md
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -25,6 +25,7 @@ HELP.md
 test_controller.http
 img.png
 postgres
-database/
+database/postgres
 image/
 logs/
+file_gitignore_for_test.txt
