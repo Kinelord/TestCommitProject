@@ -1,0 +1,14 @@
+db:
+  url: postgres_test_url
+  username: test_username
+  password: test_password
+  driver: PostgresDriver
+  hosts: localhost, 127.0.0.1
+spring:
+  datasource:
+    username: test
+    password: test
+  jpa:
+    properties.hibernate:
+      hbm2ddl.auto: validate
+

@@ -1,0 +1,101 @@
+db:
+  url: ${username.value:postgres}
+  username: root
+  password: admin
+  driver: PostgresDriver
+  hosts: localhost, 127.0.0.1
+  pool:
+    size: 5
+    timeout: 5
+  properties:
+    first: 123
+    second: 567
+    third.value: Third
+
+
+
+  # Список объектов, а не отдельных полей
+  pools:
+    - size: 1
+      timeout: 1
+    - size: 2
+      timeout: 2
+    - size: 3
+      timeout: 3
+
+username:
+  test1: test1
+  test2: test2
+
+logging:
+  level:
+    root: INFO
+    com.shakirov.database.pool.ConnectionPool: INFO
+    com.shakirov.com.shakirov.repository: INFO
+    org.springframework:
+    jdbc.core: TRACE
+    transaction:
+          interceptor: TRACE
+  file:
+    name: igor-spring.log
+    path: /
+  logback:
+    rollingpolicy:
+      max-file-size: 5
+      max-history: 10
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
+    format:
+#      Для установки формата даты, переделали на конвертер в WebConfig
+      date: iso
+  datasource:
+    url: jdbc:p6spy:postgresql://localhost:5433/postgres
+    username: postgres
+    password: postgres
+    driver-class-name:   com.p6spy.engine.spy.P6SpyDriver
+  jpa:
+    properties.hibernate:
+      show_sql: true
+      format_sql: true
+      hbm2ddl.auto: validate
+      use_sql_comments: true
+    open-in-view: false
+#  liquibase:
+#    enabled: true
+#    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
+      multiline: true
+      logging: slf4j
+      log-file: spy.log
+    enabled: true
+    datasource-proxy:
+      json-format: true
+
+#spring.profiles.active:qa
+db-test:
+  url: ${username.value:postgres}
+  username: root
+  password: admin
+  driver: PostgresDriver
+  hosts: localhost, 127.0.0.1
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+

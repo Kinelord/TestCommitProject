@@ -1,0 +1,12 @@
+db.pool.size: 115
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5674
+    username: admin
+    password: admin
+igor:
+  rabbitmq:
+    exchange: igor.exchange
+    routingKey: igor.routingKey
+    queue: igor.queue
